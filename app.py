@@ -162,7 +162,6 @@ def get_input():
 # Function to create the function
 def check_taylor(coef, trigo, power, add_param):
     global x
-    global graph
 
     if(trigo == "sin"):
         tay = sym.sin(coef*x**power) + add_param
@@ -185,7 +184,7 @@ def check_taylor(coef, trigo, power, add_param):
     return tay                                
 
 # Function to create the graph
-def plot_taylor(tay, arr, start, n):
+def plot_taylor(tay, arr, start, n, add_param):
     global x
     global graph
 
@@ -221,7 +220,7 @@ def plot_taylor(tay, arr, start, n):
     # Plot the data
     ax.plot(arr, y(arr), label="Original")
     ax.plot(arr, tayl, label="Taylor")
-    # ax.set_ylim([-2,2])
+    ax.set_ylim([add_param - 2, add_param + 2])
 
     # A tk.DrawingArea
     graph = FigureCanvasTkAgg(fig, root) 
@@ -231,7 +230,7 @@ def plot_taylor(tay, arr, start, n):
 # Function to show graph
 def show_graph():  
     # Show the graph of the corresponding taylor series of the inputted trigonometric function
-    plot_taylor(check_taylor(coefficient, trigonometry, power, add_param), arr, start, n)
+    plot_taylor(check_taylor(coefficient, trigonometry, power, add_param), arr, start, n, add_param)
     # Set button2 state to disabled and button3 state to normal
     button2['state'] = DISABLED
     button3['state'] = NORMAL
